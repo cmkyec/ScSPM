@@ -13,6 +13,7 @@ CScSPM::CScSPM(const char* dictMatPath, const char* dictMatName,
 
 double CScSPM::classify(cv::Mat& img)
 {
+	if (img.rows > 300 || img.cols > 300) return 0;
 	cv::Mat siftArr;
 	m_denseSIFT.CalculateSiftDescriptor(img, siftArr);
 	

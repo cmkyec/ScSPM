@@ -226,12 +226,12 @@ void CDenseSIFT::sp_find_sift_grid(cv::Mat& img, cv::Mat& siftArr)
 	int offsetX = cvFloor(remX * 1.0 / 2) + 1;
 	int remY = (I.rows - g_patchSize) % g_gridSpacing;
 	int offsetY = cvFloor(remY * 1.0 / 2) + 1;
-	int num_patches = ((I.rows - g_patchSize + 1 - offsetX) / g_gridSpacing + 1) *
-		((I.cols - g_patchSize + 1 - offsetY) / g_gridSpacing + 1);
+	int num_patches = ((I.cols - g_patchSize + 1 - offsetX) / g_gridSpacing + 1) *
+		((I.rows - g_patchSize + 1 - offsetY) / g_gridSpacing + 1);
 	siftArr.create(num_patches, g_num_angles * g_num_samples, CV_64F);
 	num_patches = 0;
-	for (int x = offsetX - 1; x <= I.cols - g_patchSize + 1; x += g_gridSpacing) {
-		for (int y = offsetY - 1; y <= I.rows - g_patchSize + 1; y += g_gridSpacing) {
+	for (int x = offsetX - 1; x <= I.cols - g_patchSize; x += g_gridSpacing) {
+		for (int y = offsetY - 1; y <= I.rows - g_patchSize; y += g_gridSpacing) {
 			cv::Point point(x, y);
 			siftForSinglePoint(m_weights, I_orientations, point, siftArr.row(num_patches++));
 		}
