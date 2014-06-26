@@ -228,8 +228,8 @@ void siftCenterPosition(int height, int width,
 	int offsetX = cvFloor(remX * 1.0 / 2) + 1;
 	int remY = (height - patchSize) % gridSpacing;
 	int offsetY = cvFloor(remY * 1.0 / 2) + 1;
-	int num_patches = ((height - patchSize + 1 - offsetX) / gridSpacing + 1) *
-		((width - patchSize + 1 - offsetY) / gridSpacing + 1);
+	int num_patches = ((width - patchSize + 1 - offsetX) / gridSpacing + 1) *
+		((height - patchSize + 1 - offsetY) / gridSpacing + 1);
 	x_distribution.resize(num_patches);
 	y_distribution.resize(num_patches);
 	double halfPathchSize = patchSize * 1.0 / 2 - 0.5;
