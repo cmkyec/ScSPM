@@ -2,18 +2,19 @@
 #include <fstream>
 #include "scspm.h"
 
-// output opencv matrix into the text file, to compare with the matlab result
+// 将mat数据存储至txt文件中，在matlab中import data,以与matlab数据比较。
 void outputMatrix(cv::Mat& mat, const char* filename)
 {
 	std::ofstream outfile(filename);
 	outfile << cv::format(mat, "csv") << std::endl;
 }
 
+/*
 int main()
 {
-	cv::Mat img = cv::imread("./testRes/image_0001.jpg");
+	cv::Mat img = cv::imread("./testRes/car1.jpg");
 	gentech::CDenseSIFT denseSIFT;
-	denseSIFT.init();  // 
+	denseSIFT.init();  // 计算sift特征前，必须调用一次init
 	
 	// sift descriptor
 	cv::Mat siftArr;
@@ -26,21 +27,24 @@ int main()
 	int64 start = cv::getTickCount();
 	sparseCoding.sc_pooling(siftArr, img.size(), betaMat);
 	int64 end = cv::getTickCount();
-	std::cout<<"sc_pooling time is: "<<(end - start) * 1.0 / cv::getTickFrequency()<<std::endl;
-
+	std::cout << (end - start) * 1.0 / cv::getTickFrequency() << std::endl;
+	system("pause");
 	return 0;
 }
+*/
 
-/*
 int main()
 {
 	const char* dictMatPath = "./testRes/dict_Caltech101_1024.mat";
 	const char* dictMatName = "B";
 	const char* wMatPath = "./testRes/w.mat";
-	gentech::CScSPM scspm(dictMatPath, dictMatName, wMatPath);
+	const char* wMatName = "w";
+	const char* bMatPath = "./testRes/b.mat";
+	const char* bMatName = "b";
+	gentech::CScSPM scspm(dictMatPath, dictMatName, wMatPath, wMatName, bMatPath, bMatName);
 	cv::Mat img = cv::imread("./testRes/image_0012.jpg");
-	double score = scspm.classify(img);
-	std::cout<<"score is: "<<score<<std::endl;
+	cv::Mat res = scspm.classify(img);
+	system("pause");
 	return 0;
 }
-*/
+
