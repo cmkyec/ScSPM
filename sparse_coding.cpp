@@ -117,7 +117,7 @@ void L1QP_FeatureSign_yang(cv::Mat& A, cv::Mat& b, cv::Mat& x, double lambda = 0
 	double* px = (double*)x.data;
 	double* pgrad = (double*)grad.data;
 	std::vector<int> xFlag;
-	static std::vector<double> Aa(1024), ba(512), xa(512);
+	static std::vector<double> Aa(4096), ba(512), xa(512);
 	static std::vector<double> vect(512), x_new(512), xa_x_new(512);
 	static std::vector<double> x_min(512), d(512), t(512);
 	static std::vector<double> x_s(512);
